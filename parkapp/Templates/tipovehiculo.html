@@ -1,0 +1,57 @@
+{% extends "master.html" %}
+<!--heredamos el bloque title-->
+{% block title %}
+ Listado de Tipos de vehiculos
+{% endblock %}
+{% block header %}
+<nav class="navbar navbar-inverse">
+          <div id="navbar" class="navbar-collapse collapse" >
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">SoftParking</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{usuario}}<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+      </nav>
+{% endblock %}
+{% block content %}
+<div class="row">
+    <!-- mostramos los mensajes flash -->
+    {% if messages %}
+        <div class="alert alert-success">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endif %}
+    <div class="panel panel-default">
+        <div class="panel-body">
+            {% if tipovehiculo|length > 0 %}
+                <h2>Tipos de vehiculos</h2>
+                {% for veh in tipovehiculo %}
+                     <div class="col-md-12" style="margin-bottom: 6px">
+                        <div class="col-md-8">
+                            ID: {{ veh.id }}, Descripcion: {{ veh.descripcion }}, Tarifa: {{ veh.tarifa}}, Posiciones: {{veh.posiciones}}
+                         </div>
+                         <div class="col-md-4">
+                            <a href="{% url 'update_tipo' veh.id %}" class="btn btn-success">Actualizar</a>
+                         </div>
+                     </div>
+                {% endfor %}
+            {% else %}
+                <p>No hay tipos de vehiculos</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+<!--finaliza el bloque content-->
+<!--heredamos el bloque footer-->
+{% block footer %}
+{% endblock %}

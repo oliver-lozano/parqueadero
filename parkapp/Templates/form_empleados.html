@@ -1,0 +1,39 @@
+{% extends "master.html" %}
+{% block title %}
+Nuevo usuario
+{% endblock %}
+{% block header %}
+<nav class="navbar navbar-inverse">
+          <div id="navbar" class="navbar-collapse collapse" >
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">SoftParking</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{usuario}}<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+      </nav>
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form id="usuform" action="" method="post">{% csrf_token %}
+                {{ form.as_p }}
+                <p><label for="id_clave1">Confirmar clave:</label> <input type="password" name="clave1" class="form-control" required id="id_clave1" />
+            <p style="color:red; display:none" id="nomatch" >Contraseñas no coinciden</p>
+            <input type="button" class="btn btn-block btn-success" value="Guardar" onclick="verificar()" id="btnsave">
+        </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+<!--finaliza el bloque content-->
+<!--heredamos el bloque footer-->
+{% block footer %}
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "master.html" %}
+{% block title %}
+Resumen de servicio
+{% endblock %}
+{% block header %}
+<nav class="navbar navbar-inverse">
+         <div id="navbar" class="navbar-collapse collapse" >
+           <ul class="nav navbar-nav">
+             <li class="active"><a href="#">SoftParking</a></li>
+           </ul>
+           <ul class="nav navbar-nav navbar-right">
+             <li class="dropdown">
+               <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{usuario}}<span class="caret"></span></a>
+               <ul class="dropdown-menu">
+                 <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+               </ul>
+             </li>
+           </ul>
+         </div>
+     </nav>
+{% endblock %}
+{% block content %}
+<div class="row">
+ {% if messages %}
+     <div class="alert alert-success">
+         {% for message in messages %}
+             {{ message }}
+         {% endfor %}
+     </div>
+ {% endif %}
+ <div class="panel panel-default">
+ <div class="panel-body">
+  <table class="table">
+    <tr>
+      <td><p1>Tipo de vehiculo</p1></td>
+      <td><p1>{{ins.vehiculos.tipovehiculo.descripcion}}</p1></td>
+    </tr>
+    <tr>
+      <td><p1>Fecha entrada</p1></td>
+      <td><p1>{{ins.fechain}}</p1></td>
+    </tr>
+    <tr>
+      <td><p1>Fecha salida</p1></td>
+      <td><p1>{{ins.fechaout}}</p1></td>
+    </tr>
+    <tr>
+      <td><p1>Valor por hora</p1></td>
+      <td><p1>{{ins.vehiculos.tipovehiculo.tarifa}}</p1></td>
+    </tr>
+    <tr>
+      <td><p1>Duración</p1></td>
+      <td><p1>{{dif}}</p1></td>
+    </tr>
+    <tr>
+      <td><p1>Valor total</p1></td>
+      <td><p1>{{ins.total}}</p1></td>
+    </tr>
+  </table>
+<a href="{% url 'confirmar' %}"><input type="button" class="btn btn-block btn-success" style="margin-left:auto; margin-right: auto;" value="Confirmar"></a>
+ </div>
+ </div>
+</div>
+{% endblock %}
+{% block footer %}
+{% endblock %}
